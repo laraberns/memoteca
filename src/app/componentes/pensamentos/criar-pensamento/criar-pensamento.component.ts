@@ -10,10 +10,14 @@ export class CriarPensamentoComponent implements OnInit {
     id: '1',
     conteudo: 'Pensamento de exemplo',
     autoria: 'Autor Exemplo',
-    modelo: 'modelo1',
+    modelo: 'modelo2',
   };
 
   constructor() {}
 
   ngOnInit(): void {}
+
+  criarPensamento() {
+    alert('Pensamento salvo com sucesso!');
+  }
 }
