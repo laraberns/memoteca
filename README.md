@@ -1,27 +1,100 @@
-# Memoteca
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 14.0.0.
+# 🧠 Memoteca
 
-## Development server
+Memoteca é um projeto desenvolvido com **Angular** cujo objetivo é demonstrar a criação de um **CRUD** completo utilizando o **Angular CLI**, integração com o **JSON Server**, e o uso de recursos fundamentais da framework como componentes, serviços, diretivas, rotas dinâmicas e injeção de dependências.
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+---
 
-## Code scaffolding
+## 📌 Objetivo
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+Criar uma aplicação web que permita:
 
-## Build
+- Criar novos "pensamentos" (notas);
+- Listar todos os pensamentos salvos;
+- Editar pensamentos existentes;
+- Excluir pensamentos;
+- Explorar conceitos fundamentais do Angular em uma aplicação real.
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+---
 
-## Running unit tests
+## 🛠️ Tecnologias e Ferramentas Utilizadas
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+- [Angular CLI](https://angular.io/cli)
+- [Angular 15+](https://angular.io/)
+- [TypeScript](https://www.typescriptlang.org/)
+- [JSON Server](https://github.com/typicode/json-server)
+- [RxJS](https://rxjs.dev/)
+- [Bootstrap](https://getbootstrap.com/) (opcional)
 
-## Running end-to-end tests
+---
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+## 🚀 Como executar o projeto
 
-## Further help
+### Pré-requisitos
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+- Node.js instalado
+- Angular CLI instalado globalmente (`npm install -g @angular/cli`)
+- JSON Server instalado globalmente (`npm install -g json-server`)
+
+1. **Clone o repositório:**
+
+```bash
+git clone https://github.com/laraberns/memoteca.git
+cd memoteca
+```
+
+2. **Instale as dependências:**
+
+```bash
+npm install
+```
+
+3. **Inicie o JSON Server:**
+
+```bash
+json-server --watch db.json --port 3000
+```
+
+> O arquivo `db.json` serve como banco de dados fake para simular requisições HTTP.
+
+4. **Execute a aplicação Angular:**
+
+```bash
+ng serve
+```
+
+Acesse: [http://localhost:4200](http://localhost:4200)
+
+---
+
+## 🧭 Conceitos importantes utilizados
+
+### 🔹 Componentes
+Criados via Angular CLI para modularizar a aplicação. Cada funcionalidade é organizada em um componente reutilizável.
+
+### 🔹 Serviços (Services)
+Utilizados para centralizar a lógica de acesso a dados e reaproveitar código, como chamadas HTTP.
+
+### 🔹 Injeção de Dependência
+O Angular injeta automaticamente serviços nos componentes que dependem deles, garantindo baixo acoplamento.
+
+### 🔹 HttpClient
+Serviço nativo do Angular para realizar requisições HTTP (`GET`, `POST`, `PUT`, `DELETE`). Usado junto com `Observable` do RxJS.
+
+### 🔹 Rotas Dinâmicas
+Uso de parâmetros nas rotas como `/editarPensamento/:id` para acessar detalhes específicos.
+
+### 🔹 Diretivas Angular
+- `*ngIf`: renderiza elementos condicionalmente;
+- `*ngFor`: itera sobre listas;
+- `[ngClass]`: aplica classes CSS condicionalmente.
+
+---
+
+## 📄 Licença
+
+Este projeto está sob a licença MIT. Sinta-se livre para utilizar e adaptar!
+
+---
+
+Desenvolvido por Lara
