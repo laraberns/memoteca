@@ -9,26 +9,34 @@ import { PensamentoService } from '../pensamento.service';
 })
 export class ListarPensamentoComponent implements OnInit {
   listaPensamentos: Pensamento[] = [];
-  paginaAtual: number = 1;
-  haMaisPensamentos: boolean = true;
-  filtro: string = '';
+  paginaAtual = 1;
+  haMaisPensamentos = true;
+  filtro = '';
+  exibirFavoritos = false;
+  listaFavoritos: Pensamento[] = []
 
   constructor(private service: PensamentoService) {}
 
   ngOnInit(): void {
-    this.service
-      .listar(this.paginaAtual, this.filtro)
-      .subscribe((listaPensamentos) => {
-        this.listaPensamentos = listaPensamentos;
+    this.carregarPensamentos();
+  }
+
+  carregarPensamentos() {
+    this.service.listar(this.paginaAtual, this.filtro, this.exibirFavoritos)
+      .subscribe((lista) => {
+        this.listaPensamentos = lista;
+        if (lista.length < 6) {
+          this.haMaisPensamentos = false;
+        }
       });
   }
 
   carregarMaisPensamentos() {
-    this.service
-      .listar(++this.paginaAtual, this.filtro)
-      .subscribe((listaPensamentos) => {
-        this.listaPensamentos.push(...listaPensamentos);
-        if (listaPensamentos.length === 0) {
+    this.paginaAtual++;
+    this.service.listar(this.paginaAtual, this.filtro, this.exibirFavoritos)
+      .subscribe((lista) => {
+        this.listaPensamentos.push(...lista);
+        if (lista.length < 6) {
           this.haMaisPensamentos = false;
         }
       });
@@ -37,10 +45,20 @@ export class ListarPensamentoComponent implements OnInit {
   pesquisarPensamentos() {
     this.haMaisPensamentos = true;
     this.paginaAtual = 1;
-    this.service
-      .listar(this.paginaAtual, this.filtro)
-      .subscribe((listaPensamentos) => {
-        this.listaPensamentos = listaPensamentos;
-      });
+    this.carregarPensamentos();
+  }
+
+  mostrarFavoritos() {
+    this.exibirFavoritos = true;
+    this.paginaAtual = 1;
+    this.haMaisPensamentos = true;
+    this.carregarPensamentos();
+  }
+
+  mostrarTodos() {
+    this.exibirFavoritos = false;
+    this.paginaAtual = 1;
+    this.haMaisPensamentos = true;
+    this.carregarPensamentos();
   }
 }
